@@ -11,6 +11,10 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 """
 
 import os
+#import dj_database_url heroku
+# Update database configuration with $DATABASE_URL.
+#db_from_env = dj_database_url.config(conn_max_age=500)
+#DATABASES['default'].update(db_from_env)
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -22,11 +26,23 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'hbt3u)+3ehm7h9a!xu(t#%&&#+$s+k+xuudgn$jp8y9!t2+hq+'
 
+
+#SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
 # SECURITY WARNING: don't run with debug turned on in production!
+
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'fatou999.pythonanywhere.com']
+#ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['*']
 
+#try:
+
+  #  from .local_settings import *
+
+#except ImportError:
+
+#    pass
 
 # Application definition
 
@@ -75,9 +91,22 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
 DATABASES = {
+
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+
+ 'ENGINE': 'django.db.backends.sqlite3',
+        'NAME' : os.path.join(BASE_DIR, 'db.sqlite3'),
+
+#'NAME': 'd26fvld7kih4to',
+
+#'USER': 'nwkxsmgtmwctdi',
+
+#'PASSWORD': 'd3ac6e1ebd5a5a15bb6133c2c5151ee366a6d9814b6a0833aa631ef861f1df65',
+
+#'HOST': 'ec2-107-22-250-33.compute-1.amazonaws.com',
+
+#'PORT': '5432',
+
     }
 }
 
@@ -119,7 +148,24 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
+
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-#ALLOWED_HOSTS = ['127.0.0.1', 'fatou999.pythonanywhere.com']
+#PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
+#STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
+
+#STATIC_URL = '/static/'
+
+# Extra places for collectstatic to find static files.
+
+#STATICFILES_DIRS = (
+
+#os.path.join(PROJECT_ROOT, 'static'),
+
+#)
+# Simplified static file serving.
+
+# https://warehouse.python.org/project/whitenoise/
+
+#STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
